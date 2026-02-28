@@ -3,7 +3,7 @@ import imageio
 from camera.camara import Camara
 from hand_tracking.detector_mano import DetectorMano
 from gestures.detector_gestos import DetectorGestos
-import config
+from config import config
 
 # ===========
 # INICIALIZAR
