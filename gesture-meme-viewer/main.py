@@ -30,10 +30,10 @@ def cargar_recurso(nombre_archivo):
 
     ruta = os.path.join(config.ASSETS_DIR, nombre_archivo)
 
-    print("Buscando archivo en:", ruta)  # DEBUG
+    print("Buscando archivo en:", ruta)
 
     if not os.path.exists(ruta):
-        print("❌ No existe el archivo")
+        print("No existe el archivo")
         return
 
     if nombre_archivo.lower().endswith(".gif"):
@@ -44,7 +44,7 @@ def cargar_recurso(nombre_archivo):
         if imagen is not None:
             imagen_estatica = cv2.resize(imagen, (config.MEME_WIDTH, config.MEME_HEIGHT))
         else:
-            print("❌ cv2 no pudo cargar la imagen")
+            print("cv2 no pudo cargar la imagen")
 
 
 cargar_recurso(gesto_actual) # Cargar meme por defecto
