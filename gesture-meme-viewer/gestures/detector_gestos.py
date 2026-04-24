@@ -1,4 +1,4 @@
-from gestos.gestos import punio, mano_abierta, victoria, corazon, ok
+from gestures.gestos import punio, mano_abierta, victoria, corazon, ok
 
 class DetectorGestos:
     def detectar(self, landmarks):

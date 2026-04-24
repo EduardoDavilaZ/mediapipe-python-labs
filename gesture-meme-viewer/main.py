@@ -3,7 +3,7 @@ import imageio
 from camera.camara import Camara
 from hand_tracking.detector_mano import DetectorMano
 from gestures.detector_gestos import DetectorGestos
-import config
+from config import config
 
 # ===========
 # INICIALIZAR
@@ -20,15 +20,20 @@ imagen_estatica = None
 
 # Función que carga la imágen o gif
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+import os
+
 def cargar_recurso(nombre_archivo):
     global frames_gif, imagen_estatica, frame_index
     frames_gif = []
     imagen_estatica = None
     frame_index = 0
 
-    ruta = config.ASSETS_DIR + "/" + nombre_archivo
+    ruta = os.path.join(config.ASSETS_DIR, nombre_archivo)
 
-    if not cv2.os.path.exists(ruta):
+    print("Buscando archivo en:", ruta)  # DEBUG
+
+    if not os.path.exists(ruta):
+        print("❌ No existe el archivo")
         return
 
     if nombre_archivo.lower().endswith(".gif"):
@@ -37,8 +42,9 @@ def cargar_recurso(nombre_archivo):
     else:
         imagen = cv2.imread(ruta, cv2.IMREAD_UNCHANGED)
         if imagen is not None:
-            # Redimensionamos al tamaño fijo del meme
             imagen_estatica = cv2.resize(imagen, (config.MEME_WIDTH, config.MEME_HEIGHT))
+        else:
+            print("❌ cv2 no pudo cargar la imagen")
 
 
 cargar_recurso(gesto_actual) # Cargar meme por defecto
